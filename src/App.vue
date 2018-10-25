@@ -13,7 +13,7 @@
 
 <style lang="scss">
 	//$bcc: #f3f3f3;
-	#app {
-		background-color: $bcc;
-	}
+	// #app {
+	// 	background-color: $bcc;
+	// }
 </style>
