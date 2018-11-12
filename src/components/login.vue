@@ -8,10 +8,10 @@
 
 <script>
 	export default {
-		name: 'HelloWorld',
+		name: 'login',
 		data() {
 			return {
-				activeIndex: '1'
+				activeIndex: 1,
 			}
 		},
 		created(){
@@ -23,7 +23,7 @@
 		},
 		methods: {
 			btn(){
-				alert(123);
+				this.$router.push('/dashboard');
 			}
 		}
 	}
