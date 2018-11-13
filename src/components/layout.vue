@@ -1,9 +1,12 @@
 <template>
     <div class="container">
         <ul class="router-content">
-            <router-link to="/dashboard" tag="li">dashboard</router-link>
+            <!-- <router-link to="/dashboard" tag="li">dashboard</router-link>
             <router-link to="/admin" tag="li">admin</router-link>
-            <router-link to="/visiter" tag="li">visiter</router-link>
+            <router-link to="/visiter" tag="li">visiter</router-link> -->
+            
+            <router-link v-for="item in authList" :key="item.name" :to="item.to" tag="li">{{item.name}}</router-link>
+            
             <li @click='logout'>log out</li>
         </ul>
         <div class="main">
@@ -13,13 +16,30 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
     export default{
         name: 'layout',
         data(){
             return {}
         },
-        created(){
+        computed: {
 
+            ...mapGetters([
+                'authList'
+            ])
+        },
+        beforeCreate(){
+            console.log(this.$route.query.auth)
+            if(this.$route.query.auth == 'visiter'){
+                this.$store.commit('pushList' ,{
+                    to: '/visiter',
+                    name: 'visiter'
+                })
+            }
+            
+        },
+        created(){
+            
         },
         methods: {
             logout(){

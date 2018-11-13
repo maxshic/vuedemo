@@ -7,15 +7,62 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Vuex from 'vuex'
 
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
+Vue.use(Vuex)
 Vue.config.productionTip = false
+
+const store = new Vuex.Store({
+	state: {
+		authList: [
+			{
+				to: '/dashboard',
+				name: 'dashboard'
+			},
+			{
+				to: '/admin',
+				name: 'admin'
+			},
+			// {
+			// 	to: '/visiter',
+			// 	name: 'visiter'
+			// }
+		]
+	},
+	getters: {  //计算属性
+		
+		authList: state => {
+			return state.authList
+		},
+		
+	},
+	mutations: {
+		pushList(state ,obj){
+			state.authList.push(obj)
+		},
+		clearList(state){
+			state.authList = [
+				{
+					to: '/dashboard',
+					name: 'dashboard'
+				},
+				{
+					to: '/admin',
+					name: 'admin'
+				}
+			]
+		}
+	}
+})
+
 
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',
 	router,
+	store,
 	components: { App },
 	template: '<App/>'
 })
