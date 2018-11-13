@@ -8,7 +8,7 @@
 
 <script>
 	export default {
-		name: 'HelloWorld',
+		name: 'Index',
 		data() {
 			return {
 				activeIndex: '1'
