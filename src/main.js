@@ -34,6 +34,11 @@ const store = new Vuex.Store({
 	getters: {  //计算属性
 		
 		authList: state => {
+
+			if(sessionStorage.getItem('authList')){
+				state.authList = JSON.parse(sessionStorage.getItem('authList'))
+			}
+
 			return state.authList
 		},
 		
@@ -57,6 +62,11 @@ const store = new Vuex.Store({
 	}
 })
 
+router.beforeEach((to ,from ,next) => {
+	console.log('to' ,to)
+	console.log('from' ,from)
+	next()
+})
 
 /* eslint-disable no-new */
 new Vue({
